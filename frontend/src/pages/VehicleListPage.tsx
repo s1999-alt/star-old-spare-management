@@ -26,8 +26,8 @@ export function VehicleListPage({ vehicles }: { vehicles: Vehicle[] }) {
   return (
     <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-4 px-4 py-6 sm:px-6">
         <div className="flex items-baseline justify-between">
-          <h1 className="text-xl font-semibold tracking-tight text-slate-900">Vehicles</h1>
-          <span className="text-sm text-slate-500">{filtered.length} total</span>
+          <h1 className="text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">Vehicles</h1>
+          <span className="text-sm text-slate-500 dark:text-slate-400">{filtered.length} total</span>
         </div>
         <FilterBar
           filters={filters}
@@ -36,9 +36,9 @@ export function VehicleListPage({ vehicles }: { vehicles: Vehicle[] }) {
             setPage(1)
           }}
         />
-        <div className="overflow-hidden rounded-xl border border-slate-200/80 bg-white">
+        <div className="overflow-hidden rounded-xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900">
           {/* Mobile: cards */}
-          <ul className="divide-y divide-slate-100 md:hidden">
+          <ul className="divide-y divide-slate-100 dark:divide-slate-800 md:hidden">
             {rows.map((v) => (
               <VehicleCard key={v.jobId} v={v} />
             ))}
@@ -48,7 +48,7 @@ export function VehicleListPage({ vehicles }: { vehicles: Vehicle[] }) {
           <div className="hidden overflow-x-auto md:block">
             <table className="w-full border-collapse text-left">
               <thead>
-                <tr className="border-b border-slate-100 text-xs font-medium text-slate-400">
+                <tr className="border-b border-slate-100 dark:border-slate-800 text-xs font-medium text-slate-400 dark:text-slate-500">
                   {COLUMNS.map((c, i) => (
                     <th
                       key={i}
@@ -60,7 +60,7 @@ export function VehicleListPage({ vehicles }: { vehicles: Vehicle[] }) {
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                 {rows.map((v) => (
                   <VehicleRow key={v.jobId} v={v} />
                 ))}
@@ -69,7 +69,7 @@ export function VehicleListPage({ vehicles }: { vehicles: Vehicle[] }) {
           </div>
 
           {rows.length === 0 && (
-            <div className="px-4 py-14 text-center text-sm text-slate-400">No vehicles match your filters.</div>
+            <div className="px-4 py-14 text-center text-sm text-slate-400 dark:text-slate-500">No vehicles match your filters.</div>
           )}
 
           <Pagination

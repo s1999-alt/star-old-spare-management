@@ -78,35 +78,35 @@ export function MediaSection({
           setDragging(false)
           add(e.dataTransfer.files)
         }}
-        className={`rounded-lg transition ${dragging ? 'bg-emerald-50 ring-2 ring-emerald-500/30' : ''}`}
+        className={`rounded-lg transition ${dragging ? 'bg-emerald-50 dark:bg-emerald-500/10 ring-2 ring-emerald-500/30' : ''}`}
       >
         {media.length === 0 ? (
           <button
             onClick={() => inputRef.current?.click()}
-            className="flex w-full flex-col items-center gap-1 rounded-lg border border-dashed border-slate-300 px-4 py-10 text-center transition hover:border-emerald-500 hover:bg-emerald-50/40"
+            className="flex w-full flex-col items-center gap-1 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 px-4 py-10 text-center transition hover:border-emerald-500 hover:bg-emerald-50/40 dark:hover:bg-emerald-500/5"
           >
-            <Icon name="add_photo_alternate" className="text-3xl text-slate-400" />
-            <span className="text-sm font-medium text-slate-700">Add photos or videos</span>
-            <span className="text-xs text-slate-500">Tap to choose, or drag files here</span>
+            <Icon name="add_photo_alternate" className="text-3xl text-slate-400 dark:text-slate-500" />
+            <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Add photos or videos</span>
+            <span className="text-xs text-slate-500 dark:text-slate-400">Tap to choose, or drag files here</span>
           </button>
         ) : (
           <>
-            <div className="mb-3 inline-flex rounded-lg bg-slate-100 p-0.5 text-xs font-medium">
+            <div className="mb-3 inline-flex rounded-lg bg-slate-100 dark:bg-slate-800 p-0.5 text-xs font-medium">
               {tabs.map(([key, label]) => (
                 <button
                   key={key}
                   onClick={() => setFilter(key)}
                   className={`rounded-md px-3 py-1.5 transition ${
-                    filter === key ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-800'
+                    filter === key ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
                   }`}
                 >
-                  {label} <span className="text-slate-400">{counts[key]}</span>
+                  {label} <span className="text-slate-400 dark:text-slate-500">{counts[key]}</span>
                 </button>
               ))}
             </div>
             <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
               {shown.map((m) => (
-                <li key={m.id} className="group relative aspect-square overflow-hidden rounded-lg bg-slate-100">
+                <li key={m.id} className="group relative aspect-square overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-800">
                   <button className="h-full w-full" onClick={() => setViewing(m)} aria-label={`Open ${m.name}`}>
                     {m.kind === 'image' ? (
                       <img src={m.url} alt={m.name} className="h-full w-full object-cover" />

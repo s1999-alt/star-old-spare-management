@@ -21,7 +21,7 @@ export function CutMilestones({
 
   return (
     <Section title="Cutting" description="Each cut needs a video as proof.">
-      <ul className="-my-3 divide-y divide-slate-100">
+      <ul className="-my-3 divide-y divide-slate-100 dark:divide-slate-800">
         {KINDS.map((kind) => {
           const record = kind === 'chassis' ? vehicle.chassisCut : vehicle.fullCut
           const video = record && vehicle.media.find((m) => m.id === record.videoId)
@@ -30,14 +30,14 @@ export function CutMilestones({
               <div className="flex flex-1 items-center gap-3">
                 <span
                   className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
-                    record ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-100 text-slate-400'
+                    record ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' : 'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500'
                   }`}
                 >
                   <Icon name={record ? 'check' : 'content_cut'} className="text-lg" />
                 </span>
                 <div className="min-w-0">
-                  <div className="text-sm font-medium text-slate-900">{CUT_LABEL[kind]}</div>
-                  <div className="text-xs text-slate-500">
+                  <div className="text-sm font-medium text-slate-900 dark:text-slate-100">{CUT_LABEL[kind]}</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400">
                     {record ? `Done on ${fmtDateTime(record.date)}` : 'Not done yet'}
                   </div>
                 </div>
@@ -128,7 +128,7 @@ function MarkCutModal({
     >
       <div className="flex flex-col gap-4">
         <label className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium text-slate-700">{label} date</span>
+          <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{label} date</span>
           <input
             type="datetime-local"
             className={input}
@@ -139,25 +139,25 @@ function MarkCutModal({
         </label>
 
         <div className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium text-slate-700">
-            Video <span className="font-normal text-slate-400">(required)</span>
+          <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+            Video <span className="font-normal text-slate-400 dark:text-slate-500">(required)</span>
           </span>
           {pick ? (
             <div className="flex flex-col gap-2">
               <video src={pick.url} controls className="aspect-video w-full rounded-lg bg-black" />
-              <div className="flex items-center justify-between text-xs text-slate-500">
+              <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
                 <span className="truncate">{pick.file.name}</span>
-                <label className="cursor-pointer font-medium text-emerald-700 hover:underline">
+                <label className="cursor-pointer font-medium text-emerald-700 dark:text-emerald-400 hover:underline">
                   Replace
                   <input type="file" accept="video/*" className="sr-only" onChange={(e) => choose(e.target.files?.[0])} />
                 </label>
               </div>
             </div>
           ) : (
-            <label className="flex cursor-pointer flex-col items-center gap-1 rounded-lg border border-dashed border-slate-300 px-4 py-8 text-center transition hover:border-emerald-500 hover:bg-emerald-50/40">
-              <Icon name="videocam" className="text-3xl text-slate-400" />
-              <span className="text-sm font-medium text-slate-700">Record or choose a video</span>
-              <span className="text-xs text-slate-500">Shows the {label.toLowerCase()} being done</span>
+            <label className="flex cursor-pointer flex-col items-center gap-1 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 px-4 py-8 text-center transition hover:border-emerald-500 hover:bg-emerald-50/40 dark:hover:bg-emerald-500/5">
+              <Icon name="videocam" className="text-3xl text-slate-400 dark:text-slate-500" />
+              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Record or choose a video</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400">Shows the {label.toLowerCase()} being done</span>
               <input type="file" accept="video/*" className="sr-only" onChange={(e) => choose(e.target.files?.[0])} />
             </label>
           )}

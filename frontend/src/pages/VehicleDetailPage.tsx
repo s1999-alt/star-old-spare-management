@@ -17,16 +17,16 @@ export function VehicleDetailPage({
 }) {
   return (
     <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-4 px-4 py-6 sm:px-6">
-      <a href="#/" className="inline-flex items-center gap-1 self-start text-sm text-slate-500 hover:text-slate-900">
+      <a href="#/" className="inline-flex items-center gap-1 self-start text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100">
         <Icon name="arrow_back" className="text-lg" /> Vehicles
       </a>
 
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div className="min-w-0">
-          <h1 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">{v.name}</h1>
-          <div className="mt-1 text-sm text-slate-500">
-            <span className="text-emerald-700">#{v.jobId}</span>
-            <span className="mx-1.5 text-slate-300">·</span>
+          <h1 className="text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">{v.name}</h1>
+          <div className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+            <span className="text-emerald-700 dark:text-emerald-400">#{v.jobId}</span>
+            <span className="mx-1.5 text-slate-300 dark:text-slate-600">·</span>
             <span className="font-mono">{v.plate}</span>
           </div>
         </div>

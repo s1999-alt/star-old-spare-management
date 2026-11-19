@@ -56,13 +56,6 @@ export const CUT_LABEL: Record<CutKind, string> = {
   full: 'Full cut',
 }
 
-export const GODOWNS: Record<string, string> = {
-  g07: 'Godown #07 - Sector 4',
-  g04: 'Godown #04 - Pune Central',
-  g01: 'Godown #01 - North Sector',
-  g12: 'Godown #12 - South Yard',
-}
-
 type Seed = Omit<Vehicle, 'media' | 'notes' | 'owner'>
 
 const done = { label: 'Completed', tone: 'emerald' } as const

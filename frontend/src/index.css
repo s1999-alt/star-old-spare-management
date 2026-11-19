@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Dark mode follows the `dark` class on <html> (set by lib/theme.ts), not just the OS setting. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: "Inter", sans-serif;
 }
@@ -10,3 +13,8 @@ body {
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+/* Native controls (selects, number spinners, scrollbars) and the page background behind the app. */
+html { background: var(--color-slate-50); }
+html.dark { color-scheme: dark; background: var(--color-slate-950); }
+html.dark ::-webkit-scrollbar-thumb { background: var(--color-slate-700); }

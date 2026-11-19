@@ -24,11 +24,11 @@ export function OwnerDocuments({
   const dirty = JSON.stringify(draft) !== JSON.stringify(owner)
 
   const badge = complete ? (
-    <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700">
+    <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 dark:bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:text-emerald-400">
       <Icon name="verified" className="text-sm" /> Complete
     </span>
   ) : (
-    <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-xs font-medium text-amber-700">
+    <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 dark:bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-700 dark:text-amber-400">
       Pending
     </span>
   )
@@ -50,15 +50,15 @@ export function OwnerDocuments({
           ].map((d) => (
             <li key={d.label} className="flex items-center gap-3">
               <button
-                className="h-12 w-16 shrink-0 overflow-hidden rounded-md bg-slate-100"
+                className="h-12 w-16 shrink-0 overflow-hidden rounded-md bg-slate-100 dark:bg-slate-800"
                 onClick={() => d.img && setViewing({ url: d.img, name: `${d.label} photo` })}
                 aria-label={`View ${d.label} photo`}
               >
                 {d.img && <img src={d.img} alt="" className="h-full w-full object-cover" />}
               </button>
               <div className="min-w-0">
-                <div className="text-xs text-slate-500">{d.label}</div>
-                <div className="truncate font-mono text-sm text-slate-900">{d.value}</div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">{d.label}</div>
+                <div className="truncate font-mono text-sm text-slate-900 dark:text-slate-100">{d.value}</div>
               </div>
             </li>
           ))}
@@ -84,7 +84,7 @@ export function OwnerDocuments({
       >
         {/* RC */}
         <fieldset className="flex flex-col gap-2">
-          <legend className="mb-2 text-sm font-medium text-slate-700">Registration certificate (RC)</legend>
+          <legend className="mb-2 text-sm font-medium text-slate-700 dark:text-slate-300">Registration certificate (RC)</legend>
           <input
             className={`${input} font-mono uppercase`}
             placeholder={`RC number, e.g. ${plate}`}
@@ -96,15 +96,15 @@ export function OwnerDocuments({
 
         {/* PAN / Aadhaar */}
         <fieldset className="flex flex-col gap-2">
-          <legend className="mb-2 text-sm font-medium text-slate-700">Owner ID</legend>
-          <div className="inline-flex self-start rounded-lg bg-slate-100 p-0.5 text-xs font-medium">
+          <legend className="mb-2 text-sm font-medium text-slate-700 dark:text-slate-300">Owner ID</legend>
+          <div className="inline-flex self-start rounded-lg bg-slate-100 dark:bg-slate-800 p-0.5 text-xs font-medium">
             {(['aadhaar', 'pan'] as IdType[]).map((t) => (
               <button
                 type="button"
                 key={t}
                 onClick={() => t !== draft.idType && set({ idType: t, idNumber: '' })}
                 className={`rounded-md px-3 py-1.5 transition ${
-                  draft.idType === t ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-800'
+                  draft.idType === t ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
                 }`}
               >
                 {ID_LABEL[t]}
@@ -130,7 +130,7 @@ export function OwnerDocuments({
               onChange={(e) => set({ idNumber: e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '') })}
             />
           )}
-          {err && <p className="text-xs text-red-600">{err}</p>}
+          {err && <p className="text-xs text-red-600 dark:text-red-400">{err}</p>}
           <ImageField
             label={`${ID_LABEL[draft.idType]} photo`}
             value={draft.idImage}
@@ -173,10 +173,10 @@ function ImageField({
 
   if (value) {
     return (
-      <div className="flex items-center gap-3 rounded-lg border border-slate-200 p-2">
+      <div className="flex items-center gap-3 rounded-lg border border-slate-200 dark:border-slate-700 p-2">
         <img src={value} alt={label} className="h-12 w-16 rounded object-cover" />
-        <span className="flex-1 truncate text-sm text-slate-700">{label}</span>
-        <label className="cursor-pointer text-xs font-medium text-emerald-700 hover:underline">
+        <span className="flex-1 truncate text-sm text-slate-700 dark:text-slate-300">{label}</span>
+        <label className="cursor-pointer text-xs font-medium text-emerald-700 dark:text-emerald-400 hover:underline">
           Replace
           <input type="file" accept="image/*" className="sr-only" onChange={(e) => pick(e.target.files?.[0])} />
         </label>
@@ -187,9 +187,9 @@ function ImageField({
     )
   }
   return (
-    <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-dashed border-slate-300 p-3 transition hover:border-emerald-500 hover:bg-emerald-50/40">
-      <Icon name="add_a_photo" className="text-xl text-slate-400" />
-      <span className="text-sm text-slate-600">Upload {label.toLowerCase()}</span>
+    <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-dashed border-slate-300 dark:border-slate-700 p-3 transition hover:border-emerald-500 hover:bg-emerald-50/40 dark:hover:bg-emerald-500/5">
+      <Icon name="add_a_photo" className="text-xl text-slate-400 dark:text-slate-500" />
+      <span className="text-sm text-slate-600 dark:text-slate-400">Upload {label.toLowerCase()}</span>
       <input type="file" accept="image/*" className="sr-only" onChange={(e) => pick(e.target.files?.[0])} />
     </label>
   )

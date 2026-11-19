@@ -9,7 +9,7 @@ interface Props {
 }
 
 const btn =
-  'flex h-8 items-center justify-center rounded-md px-2 text-slate-600 transition-colors hover:bg-slate-100 disabled:opacity-30 disabled:hover:bg-transparent'
+  'flex h-8 items-center justify-center rounded-md px-2 text-slate-600 dark:text-slate-400 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-30 disabled:hover:bg-transparent'
 
 function pageList(page: number, last: number): (number | '…')[] {
   if (last <= 6) return Array.from({ length: last }, (_, i) => i + 1)
@@ -27,20 +27,20 @@ export function Pagination({ page, pageSize, total, onPage, onPageSize }: Props)
   const last = Math.max(1, Math.ceil(total / pageSize))
   const from = total === 0 ? 0 : (page - 1) * pageSize + 1
   const to = Math.min(page * pageSize, total)
-  const strong = 'font-semibold text-slate-800'
+  const strong = 'font-semibold text-slate-800 dark:text-slate-200'
 
   return (
-    <div className="flex flex-col items-center justify-between gap-3 border-t border-slate-100 px-4 py-3 text-xs sm:flex-row">
-      <div className="flex flex-wrap items-center justify-center gap-2 text-slate-500">
+    <div className="flex flex-col items-center justify-between gap-3 border-t border-slate-100 dark:border-slate-800 px-4 py-3 text-xs sm:flex-row">
+      <div className="flex flex-wrap items-center justify-center gap-2 text-slate-500 dark:text-slate-400">
         <span>
           Showing <strong className={strong}>{from}</strong> to <strong className={strong}>{to}</strong> of{' '}
           <strong className={strong}>{total.toLocaleString()}</strong> entries
         </span>
-        <span className="hidden text-slate-300 sm:inline">·</span>
+        <span className="hidden text-slate-300 dark:text-slate-600 sm:inline">·</span>
         <select
           value={pageSize}
           onChange={(e) => onPageSize(Number(e.target.value))}
-          className="h-8 cursor-pointer rounded-md border border-slate-200 bg-white px-2 text-xs text-slate-700 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+          className="h-8 cursor-pointer rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 text-xs text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-emerald-600"
         >
           {[5, 10, 25, 50].map((n) => (
             <option key={n} value={n}>{n} per page</option>
@@ -53,7 +53,7 @@ export function Pagination({ page, pageSize, total, onPage, onPageSize }: Props)
         </button>
         {pageList(page, last).map((p, i) =>
           p === '…' ? (
-            <span key={`gap${i}`} className="select-none px-1 text-slate-400">...</span>
+            <span key={`gap${i}`} className="select-none px-1 text-slate-400 dark:text-slate-500">...</span>
           ) : (
             <button
               key={p}

@@ -14,11 +14,11 @@ export function Section({
   children: ReactNode
 }) {
   return (
-    <section className="rounded-xl border border-slate-200/80 bg-white">
-      <header className="flex items-start justify-between gap-3 border-b border-slate-100 px-4 py-3.5 sm:px-5">
+    <section className="rounded-xl border border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900">
+      <header className="flex items-start justify-between gap-3 border-b border-slate-100 dark:border-slate-800 px-4 py-3.5 sm:px-5">
         <div>
-          <h2 className="text-sm font-semibold text-slate-900">{title}</h2>
-          {description && <p className="mt-0.5 text-xs text-slate-500">{description}</p>}
+          <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">{title}</h2>
+          {description && <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">{description}</p>}
         </div>
         {action}
       </header>
@@ -53,25 +53,25 @@ export function Modal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-slate-900/40 sm:items-center sm:p-4"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-slate-900/40 dark:bg-black/60 sm:items-center sm:p-4"
       onClick={onClose}
     >
       <div
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className={`max-h-[92vh] w-full overflow-y-auto rounded-t-2xl bg-white shadow-xl sm:rounded-2xl ${wide ? 'sm:max-w-3xl' : 'sm:max-w-md'}`}
+        className={`max-h-[92vh] w-full overflow-y-auto rounded-t-2xl bg-white dark:bg-slate-900 shadow-xl sm:rounded-2xl ${wide ? 'sm:max-w-3xl' : 'sm:max-w-md'}`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between px-5 pt-4">
-          <h3 className="truncate text-base font-semibold text-slate-900">{title}</h3>
+          <h3 className="truncate text-base font-semibold text-slate-900 dark:text-slate-100">{title}</h3>
           <button className={btn.ghost} onClick={onClose} aria-label="Close">
             <Icon name="close" className="text-xl" />
           </button>
         </div>
         <div className="px-5 py-4">{children}</div>
         {footer && (
-          <div className="flex justify-end gap-2 border-t border-slate-100 px-5 py-3.5">{footer}</div>
+          <div className="flex justify-end gap-2 border-t border-slate-100 dark:border-slate-800 px-5 py-3.5">{footer}</div>
         )}
       </div>
     </div>
